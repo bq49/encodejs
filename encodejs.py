@@ -5,10 +5,15 @@ import os,sys
 
 print(os.getcwd())
 
+# print("for sys.argv")
 for arg in sys.argv:
     print(arg)
+# print("len:"+repr(len(sys.argv)))
 
-filepath = input("请拖动要加密的js文件到此处\n")
+if( len(sys.argv) >= 2 ): #and sys.argv[2] and len(sys.argv[2])>0 ):
+    filepath = sys.argv[1]
+else:
+    filepath = input("请拖动要加密的js文件到此处\n")
 # print(filepath)
 
 def isHaveChar(str,start,end):
