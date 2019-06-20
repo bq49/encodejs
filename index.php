@@ -1,6 +1,8 @@
 <?php
 
 require_once('./db/MysqliDb.php');
+require_once('./MoneyType.php');
+require_once('./strTools.php');
 require_once "./QueryData.php";
 
 
@@ -68,9 +70,42 @@ if( !$rs )  //库里没有数据，实时拉取
 
 $result = [];
 
-$result['singleData'] = $singleData;
-$result['changeData'] = $changeData;
-$result['caculData'] = $caculData;
+//根据参数返回不同的值
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
+// echo "action:".$action."<br>";
+if( strlen($action) > 0 )
+{
+    $acts = explode(",",$action);
+    // var_dump($acts);
+}
+
+if( isset($acts) && count($acts) > 0 )
+{
+    foreach($acts as $act)
+    {
+        if( strTools::isSameString($act,'singleData') )
+        {
+            $result['singleData'] = $singleData;
+        }else if( strTools::isSameString($act,'changeData') )
+        {
+            $result['changeData'] = $changeData;
+        }else if( strTools::isSameString($act,'caculData') )
+        {
+            $result['caculData'] = $caculData;
+        }else if( strTools::isSameString($act,'currency') )
+        {
+            $result['currency'] = MoneyType::$mType;
+        }
+    }
+    // echo "any:<br>";
+}else{
+    $result['singleData'] = $singleData;
+    $result['changeData'] = $changeData;
+    $result['caculData'] = $caculData;
+    $result['currency'] = MoneyType::$mType;
+
+    // echo "all:<br>";
+}
 
 die(json_encode($result));
 

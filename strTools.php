@@ -89,6 +89,17 @@ class strTools{
 
         return $arr_vk;
     }
+
+    //两个字符串是否相同
+    public static function isSameString($a,$b)
+    {
+        if( strcasecmp( $a, $b ) == 0 )
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
 
 ?>
