@@ -138,11 +138,11 @@ class DB {
 	}
 
 	/**
-	 * [doSelectRow 执行查询数据库操作]
+	 * [getRow 执行查询数据库操作]
 	 * @param  [type] $sql [执行的SQl语句]
 	 * @return [bool]      [返回查询的一行结果]
 	 */
-	public static function doSelectRow($sql) {
+	public static function getRow($sql) {
 		if ($mysql = self::connect()) {
 			$result = $mysql->query($sql);
 			if ($result != FALSE) {
@@ -160,7 +160,7 @@ class DB {
 	 * @param  [type] $sql [执行的SQl语句]
 	 * @return [type]      [返回查询的所有结果]
 	 */
-	public static function doSelectTable($sql) {
+	public static function getAll($sql) {
 		if ($mysql = self::connect()) {
 			$result = $mysql->query($sql);
 			if ($result != FALSE) {

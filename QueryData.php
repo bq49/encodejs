@@ -1,6 +1,6 @@
 <?php
 
-require_once "./DB.php";
+// require_once "./DB.php";
 require_once "./curlRequest.php";
 require_once "./strTools.php";
 
@@ -20,12 +20,16 @@ class QueryData{
     public $single_data;    //单独美元价格/盎司
     public $change_data_cny;        //人民币和美元价格/盎司
     public $cacul_data;     //全量各种货币价格
+    public $rate_cny2usd;   //人民币兑换美元
+
+    public $oz2g = 28.3495231;  //1盎司换算克
+    public $oz2kg = 0.0283495231;   //1盎司换千克
 
     public function __construct() 
     {
     }
 
-    public function getSingleData()
+    public function requestSingleData()
     {
         $rs = curlRequest::curl_get($this->url_single);
         /*
@@ -39,7 +43,14 @@ class QueryData{
         return $this->single_data;
     }
 
-    public function getChangeDataCNY()
+    public function setSingleData($data)
+    {
+        $this->single_data = $data;
+
+        return $this->single_data;
+    }
+
+    public function requestChangeDataCNY()
     {
         $rs = curlRequest::curl_get($this->url_change_cny);
         /*
@@ -79,7 +90,14 @@ class QueryData{
         return $this->change_data_cny;
     }
 
-    public function getCaculData()
+    public function setChangeDataCNY($data)
+    {
+        $this->change_data_cny = $data;
+
+        return $this->change_data_cny;
+    }
+
+    public function requestCaculData()
     {
         $rs = curlRequest::curl_get($this->url_cacul_data);
         /*
@@ -117,8 +135,20 @@ class QueryData{
         return $this->cacul_data;
     }
 
+    public function setCaculData($data)
+    {
+        $this->cacul_data = $data;
+
+        return $this->cacul_data;
+    }
+
     public function getPriceFromCaculData($mtype)
     {
+        //先检查是否存在数据
+        if( !$this->cacul_data )
+        {
+            return 0;
+        }
         //遍历计算数据，取出key与mtype相同的一个的value值
         $gold = $this->cacul_data['gold']['data'];
         foreach($gold as $one)
@@ -133,6 +163,51 @@ class QueryData{
         return 0;
     }
 
+    //从交换数据中提取出指定币种的价格
+    public function getPriceFromChangeData($mtype)
+    {
+        //先检查是否存在数据
+        if( !$this->change_data_cny )
+        {
+            return 0;
+        }
+        
+        $items = $this->change_data_cny['items'];
+        foreach($items as $one)
+        {
+            $curr = $one['curr'];
+            if( $curr == $mtype )
+            {
+                return $one['xauPrice'];
+            }
+        }
+
+        return 0;
+    }
+
+    //计算出人民币和美元的汇率
+    public function getMoneyRateCNY2USD()
+    {
+        if( $this->rate_cny2usd )
+        {
+            return $this->rate_cny2usd;
+        }
+
+        //从计算数据中取出两个货币的价格
+        $pa = $this->getPriceFromChangeData("CNY");
+        $pb = $this->getPriceFromChangeData("USD");
+        
+        //如果没有数据，则返回0
+        if( !$pa || !$pb )
+        {
+            return 0;
+        }
+
+        //有数据的时候，计算比例
+        $this->rate_cny2usd = $pa/$pb;
+        return $this->rate_cny2usd;
+    }
+
     //计算出钱币的兑换汇率A兑换B
     public function getMoneyRateWith($ma,$mb)
     {
@@ -140,7 +215,18 @@ class QueryData{
         $pa = $this->getPriceFromCaculData($ma);
         $pb = $this->getPriceFromCaculData($mb);
         
+        //如果没有数据，则返回0
+        if( !$pa || !$pb )
+        {
+            return 0;
+        }
+
+        //有数据的时候，计算比例
+        $r = $pa/$pb;
+        return $r;
     }
+
+
 }
 
 

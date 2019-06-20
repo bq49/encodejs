@@ -65,12 +65,17 @@ class strTools{
 
     public static function getCaculDataFromString($rs)
     {
+        //移除掉双引号
+        $rs = str_replace('"',"",$rs);
+
+        // echo 'all:'.$rs.'<br>';
         //先分开金银
         $arr_gold_silver = explode("@",$rs);
         //分别取出金银字串
         $gold_str = $arr_gold_silver[0];
         // echo "gold_str:".$gold_str."<br>";
         $silver_str = $arr_gold_silver[1];
+        // echo "silver_str:".$silver_str."<br>";
 
         //提取黄金数据
         $golds = strTools::getDatasByType($gold_str);
