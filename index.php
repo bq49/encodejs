@@ -1,6 +1,6 @@
 <?php
 
-require_once('./database/MysqliDb.php');
+require_once('./db/MysqliDb.php');
 require_once "./QueryData.php";
 
 
