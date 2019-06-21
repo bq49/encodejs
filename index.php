@@ -1,8 +1,9 @@
 <?php
 
-require_once('./db/MysqliDb.php');
+require_once('./dbmanager.php');
 require_once('./MoneyType.php');
 require_once('./strTools.php');
+require_once('./Missions.php');
 require_once "./QueryData.php";
 
 
@@ -24,16 +25,6 @@ $cur_time_date = date('Y-m-d H:i:s',$cur_time);
 $cur_minute_stamp = strtotime( date('Y-m-d H:i',time()) );
 
 //检查数据库中是否有该1分钟内的数据
-$db = new Mysqlidb (
-    Array (
-        'host' => 'localhost',
-        'username' => 'root', 
-        'password' => 'root',
-        'db'=> 'db_data_gold',
-        'port' => 3306,
-        'prefix' => 'tb_',
-        'charset' => 'utf8'));
-
 $sql = "select * from `tb_datas` where `uptime`>=".$cur_minute_stamp;
 $rs = $db->rawQuery($sql);
 // var_dump($rs);
@@ -67,6 +58,8 @@ if( !$rs )  //库里没有数据，实时拉取
     $changeData = $qd->setChangeDataCNY($rs[0]['change_data']);
     $caculData = $qd->setCaculData($rs[0]['cacul_data']);
 }
+
+
 
 $result = [];
 
@@ -106,6 +99,17 @@ if( isset($acts) && count($acts) > 0 )
 
     // echo "all:<br>";
 }
+
+// $misact = isset($_REQUEST['misact']) ? $_REQUEST['misact'] : null;
+//检查是否有任务实现？有的话，需要进行提醒处理
+$mis = new Missions($db);
+$mis->check(
+    array(
+        'singleData'=>$singleData,
+        'changeData'=>$changeData,
+        'caculData'=>$caculData)
+    );
+
 
 die(json_encode($result));
 

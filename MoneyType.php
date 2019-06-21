@@ -54,6 +54,18 @@ class MoneyType{
         array("key"=>"XAU_ZAR","name"=>"ZAR","desc"=>"南非兰特"),
     );
 
+    public static function getCurrencyByKey($key)
+    {
+        foreach(MoneyType::$mType as $one)
+        {
+            if( strTools::isSameString($key,$one['key']) )
+            {
+                return $one;
+            }
+        }
+
+        return null;
+    }
 
     public static function isSameMoneyType($key,$mtype)
     {

@@ -22,8 +22,8 @@ class QueryData{
     public $cacul_data;     //全量各种货币价格
     public $rate_cny2usd;   //人民币兑换美元
 
-    public $oz2g = 28.3495231;  //1盎司换算克
-    public $oz2kg = 0.0283495231;   //1盎司换千克
+    public static $oz2g = 28.3495231;  //1盎司换算克
+    public static $oz2kg = 0.0283495231;   //1盎司换千克
 
     public function __construct() 
     {
