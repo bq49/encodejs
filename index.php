@@ -27,7 +27,7 @@ $cur_minute_stamp = strtotime( date('Y-m-d H:i',time()) );
 //检查数据库中是否有该1分钟内的数据
 $sql = "select * from `tb_datas` where `uptime`>=".$cur_minute_stamp;
 $rs = $db->rawQuery($sql);
-// var_dump($rs);
+var_dump($rs);
 
 $qd = new QueryData();
 if( !$rs )  //库里没有数据，实时拉取
@@ -54,9 +54,9 @@ if( !$rs )  //库里没有数据，实时拉取
     // var_dump($r);
 }else{
     //库里有数据，把数据填到对象里
-    $singleData = $qd->setSingleData($rs[0]['single_data']);
-    $changeData = $qd->setChangeDataCNY($rs[0]['change_data']);
-    $caculData = $qd->setCaculData($rs[0]['cacul_data']);
+    $singleData = $qd->setSingleData(json_decode($rs[0]['single_data'],true));
+    $changeData = $qd->setChangeDataCNY(json_decode($rs[0]['change_data'],true));
+    $caculData = $qd->setCaculData(json_decode($rs[0]['cacul_data'],true));
 }
 
 
