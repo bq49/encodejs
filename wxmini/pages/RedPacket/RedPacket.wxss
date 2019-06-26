@@ -1,0 +1,152 @@
+.user-contont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+}
+.user-name {
+    width: 500rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.user-name image {
+    height: 150rpx;
+    width: 150rpx;
+    margin-bottom: 50rpx;
+}
+.user-name  .names {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-name  .names .iconfont{
+  color: #f42341;
+}
+.moeny {
+    padding: 0 30rpx;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.moeny view{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  height: 130rpx;
+  border:4rpx solid #577eff;
+  width: 200rpx; 
+  margin-bottom: 30rpx;
+  border-radius: 15rpx;
+}
+.moeny view text {
+  font-size: 70rpx;
+   color: #577eff;
+   font-style:italic;
+}
+.moeny view text:after{
+  content: "元";
+  font-size:26rpx;
+  margin-top: 15rpx;
+  margin-left: 5rpx;
+  color: #577eff;
+}
+.moeny view.action{
+    border-color: #577eff;
+    background: #577eff;
+}
+.moeny view.action text{
+  color: #fff;
+}
+.moeny view.action text:after{
+  color: #fff;
+}
+.other {
+    color: #1679f3;
+    font-size: 30rpx;
+    display: flex;
+    justify-content: center;
+    padding-top: 40rpx;
+}
+.mask-back {
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.mask-text {
+    height: 400rpx;
+    width:75%;
+    background-color: #fff;
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 2;
+    border-radius: 20rpx;
+}
+.title {
+    padding: 20rpx 0;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+.title image {
+    height: 45rpx;
+    width: 45rpx;
+    position: absolute;
+    top: 20rpx;
+    left: 15rpx;
+}
+.title text {
+    font-size: 36rpx;
+}
+.txmoeny {
+    position: relative;
+    display:flex;
+    height: 80rpx;
+    margin: 50rpx 30rpx;
+    border:1px solid #ccc;
+    padding: 0 15rpx;
+}
+.txmoeny  text {
+  display: flex;
+  align-items: center;
+  font-size: 34rpx;
+
+}
+.txmoeny input {
+    flex: 1;
+    height: 100%;
+}
+.sumbtn {
+    height: 80rpx;
+    padding: 0 30rpx;
+}
+.sumbtn button {
+    background-color: #577eff;
+    color: #fff;
+}
+.smreward {
+    height: 94rpx;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin: 0 auto;
+    background-color: #577eff;
+    border-radius: 15rpx;
+    margin-top: 60rpx;
+    font-size: 38rpx;
+}

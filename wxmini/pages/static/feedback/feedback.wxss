@@ -1,0 +1,21 @@
+.feedback {
+    padding: 30rpx;
+}
+.feedback textarea{
+    width: 96%;
+    border:1px solid #ccc;
+    padding: 20rpx 2%;
+    font-size: 32rpx;
+    color: #333;
+    height: 330rpx;
+}
+.feedback button{
+    width: 100%;
+    height: 94rpx;
+    line-height: 94rpx;
+    font-size: 38rpx;
+    color: #fff;
+    background-color: #577eff;
+    margin-top: 40rpx;
+
+}

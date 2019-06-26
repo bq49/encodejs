@@ -1,0 +1,8 @@
+
+<text>你好你好你好</text>  
+<view class="box">
+
+<button bindtap='show'>允许</button><button>不允许</button>
+
+</view>
+

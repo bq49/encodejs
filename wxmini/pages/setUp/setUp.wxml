@@ -1,0 +1,16 @@
+<!--条目列表  -->
+<view class="setup-list">
+  <navigator url='/pages/modifyPasd/modifyPasd' class="pd">
+    <text>修改密码</text>
+    <text class="icon-return iconfont"></text>
+  </navigator>
+  <navigator url='/pages/aboutList/aboutList' class="gy">
+    <text>关于</text>
+    <text class="icon-return iconfont"></text>
+  </navigator>
+  <navigator url='/pages/static/Help/Help' class="bz">
+    <text>帮助</text>
+    <text class="icon-return iconfont"></text>
+  </navigator>
+  <view class='quit' bindtap='quitFn'><text>退出登陆</text></view>
+</view>

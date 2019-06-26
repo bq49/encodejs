@@ -1,0 +1,36 @@
+.centers {
+        display: flex;
+        align-items: flex-start;
+}
+
+.right {
+        height: 490rpx;
+        overflow: auto;
+        background: #fafafa;
+}
+
+.left {
+        border-right: 1rpx solid #f5f5f5;
+}
+
+.subclass {
+        flex: 1;
+}
+
+.subclass text {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 80rpx;
+        font-size: 32rpx;
+        color: #636363;
+        border-bottom: 2rpx solid #f5f5f5;
+}
+.right text {
+        border:none;
+}
+.subclass .active {
+        background: #fafafa;
+        color: #577eff;
+}

@@ -1,0 +1,62 @@
+<!-- 引用模板  -->
+<import src="../../template/bottomNav.wxml" />
+<view class="head-cen">
+        <view class="head-user" bindtap="xgUserFn">
+                <view class="head-users ">
+                        <image src="{{image}}"></image>
+                        <text>{{usrename}}</text>
+                </view>
+                <view class="location">
+                        <text>{{positions}}</text>
+                        <text class="iconfont icon-coordinates"></text>
+                </view>
+                <view class="sexFlex">
+                        <text class="sex">{{sex}}</text>
+                        <text class="iconfont icon-return"></text>
+                </view>
+        </view>
+</view>
+<view class="user-center">
+        <view class="user-list" bindtap="onNews">
+                <view class="user-list-let">
+                        <text class="icon-message iconfont"></text>
+                        <text>消息中心</text>
+                </view>
+                <view class="left-img">
+                        <image src="../../images/yuan.png" class="yuan" wx:if="{{news != 0 }}"></image>
+                        <text class="icon-return iconfont"></text>
+                </view>
+        </view>
+        <view class="user-list" bindtap="onOrder">
+                <view class="user-list-let">
+                        <text class="icon-document iconfont"></text>
+                        <text>我的订单</text>
+                </view>
+                <view class="left-img">
+                        <text class="icon-return iconfont"></text>
+                </view>
+        </view>
+        <view class="user-list" bindtap="opinionFn">
+                <view class="user-list-let">
+                        <text class="icon-order iconfont"></text>
+                        <text>意见反馈</text>
+                </view>
+                <view class="left-img">
+                        <text class="icon-return iconfont"></text>
+                </view>
+        </view>
+        <view class="user-list setup" bindtap="setupFn">
+                <view class="user-list-let">
+                        <text class="icon-setup iconfont"></text>
+                        <text>设置</text>
+                </view>
+                <view class="left-img">
+                        <text class="icon-return iconfont"></text>
+                </view>
+        </view>
+</view>
+<view class="con-bottom-nav">
+        <block wx:for="{{indexData}}" wx:key="{{index}}" wx:for-item="newsItem">
+                <template is="bomNav" data="{{...newsItem}}" />
+        </block>
+</view>
